@@ -24,6 +24,7 @@
 <div data-sentiment="condol" style="--sentiment-1: var(--sm-ink); --sentiment-2: var(--sm-ink-70); --accent: var(--sm-ink); --accent-hover: var(--sm-ink-70); background: var(--surface-page); color: var(--text-body); min-height: 100vh;">
 
   <div data-screen-label="01 Hero" ref="{{ heroRef }}" style="position: relative; isolation: isolate; background: #1C1D1D url('assets/hero-vino.jpg') center / cover no-repeat; color: var(--sm-white); --text-body: var(--sm-white); --text-secondary: var(--sm-white); --accent: var(--sm-white); --accent-hover: var(--sm-paper); --on-accent: var(--sm-ink);">
+    <video ref="{{ videoRef }}" src="assets/hero-video.mp4" poster="assets/hero-vino.jpg" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; pointer-events: none;"></video>
     <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(28,29,29,.6); z-index: -1;"></div>
     <header style="display: flex; justify-content: center; padding: 48px 32px 0;">
       <a href="#" aria-label="Soul Meraki" style="display: flex;"><img src="assets/logo-soulmeraki-blanc.svg" alt="Soul Meraki" style="height: 96px; width: 56px; display: block"></a>
@@ -31,13 +32,13 @@
     <div style="min-height: calc(100svh - 144px); margin: 0; padding: 48px clamp(24px, 5vw, 56px) 72px; display: flex; flex-direction: column; justify-content: flex-end; gap: 48px;">
       <div style="flex: 1 1 auto; min-height: clamp(96px, 20vh, 240px);"></div>
       <div style="display: flex; flex-direction: column; gap: 24px; text-align: left;">
-        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="hero" hint-size="100%,130px"><span style="display: block; font-size: clamp(34px, 5.6vw, 52px); text-wrap: balance;"><span style="display: block;">Donde no llegan las palabras</span><span style="display: block; font-style: italic;">Ni tampoco el silencio</span></span></x-import>
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="hero" hint-size="100%,130px"><span style="display: block; font-size: clamp(34px, 5.6vw, 52px); text-wrap: balance;"><span style="display: block; font-size: 45px">Donde no llegan las palabras</span><span style="display: block; font-style: italic; font-size: 45px">Ni tampoco el silencio</span></span></x-import>
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px;">
           <p style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; flex: 1 1 360px; max-width: 720px; text-wrap: balance">Ante la pérdida de un familiar o de alguien muy querido, hay sentimientos que cuesta expresar. Porque no siempre encontramos las palabras. Y hay emociones que van mucho más allá de lo que podemos decir. Pero están y necesitamos encontrar una forma de hacerlas sentir.</p>
           <p style="font-size: 16px; line-height: 1.6; color: var(--text-body); margin: 0; flex: 1 1 320px; max-width: 540px; text-align: justify; text-align-last: left; hyphens: auto;" lang="es">En Soul Meraki creamos experiencias para acompañar esos momentos y expresar, con sensibilidad y cuidado, aquello que las palabras no <br>alcanzan a decir.</p>
         </div>
       </div>
-      <div style="display: flex; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.3);">
+      <div style="display: flex; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.3);" onClick="{{ toPropuesta }}">
         <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Button" variant="{{ ctaVariant }}" href="#propuesta" hint-size="260px,52px">Descubre Soul Meraki</x-import>
       </div>
     </div>
@@ -171,7 +172,13 @@
 class Component extends DCLogic {
   state = { showTop: false, mobile: !!(window.matchMedia && window.matchMedia('(max-width: 839px)').matches) };
   heroRef = React.createRef();
+  videoRef = React.createRef();
   componentDidMount() {
+    const v = this.videoRef.current;
+    if (v) {
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+      const p = v.play(); p && p.catch && p.catch(() => {});
+    }
     this.mq = window.matchMedia && window.matchMedia('(max-width: 839px)');
     this.onMq = () => this.setState({ mobile: this.mq.matches });
     this.mq && this.mq.addEventListener('change', this.onMq);
@@ -257,9 +264,19 @@ class Component extends DCLogic {
       pauseInk: dark ? 'var(--sm-white)' : 'var(--sm-ink)',
       onSubmit: (e) => e.preventDefault(),
       heroRef: this.heroRef,
+      videoRef: this.videoRef,
       topOpacity: this.state.showTop ? 1 : 0,
       topPointer: this.state.showTop ? 'auto' : 'none',
       topTab: this.state.showTop ? 0 : -1,
+      toPropuesta: (e) => {
+        const el = document.getElementById('propuesta');
+        if (!el) return;
+        e && e.preventDefault && e.preventDefault();
+        const y = el.getBoundingClientRect().top + window.scrollY;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, y); return; }
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        this.target = Math.max(0, Math.min(max, y)); this.start && this.start();
+      },
       toTop: () => {
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, 0); return; }
         this.target = 0; this.start && this.start();
