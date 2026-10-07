@@ -1,0 +1,11 @@
+/* Fraunces: original TTFs not present in project — loaded from Google Fonts (same family, variable, with SOFT axis). */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,100..900,0..100;1,9..144,100..900,0..100&display=swap");
+
+@font-face{font-family:"SM Gill Sans";src:url("../fonts/GillSans-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"SM Gill Sans";src:url("../fonts/GillSans-LightItalic.otf") format("opentype");font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:"SM Gill Sans";src:url("../fonts/GillSans-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"SM Gill Sans";src:url("../fonts/GillSans-Italic.otf") format("opentype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"SM Gill Sans";src:url("../fonts/GillSans-Medium.otf") format("opentype");font-weight:500 600;font-style:normal;font-display:swap}
+@font-face{font-family:"SM Gill Sans";src:url("../fonts/GillSans-MediumItalic.otf") format("opentype");font-weight:500 600;font-style:italic;font-display:swap}
+@font-face{font-family:"SM Gill Sans Condensed";src:url("../fonts/GillSans-Condensed.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"SM Gill Sans Condensed";src:url("../fonts/GillSans-CondensedBold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}

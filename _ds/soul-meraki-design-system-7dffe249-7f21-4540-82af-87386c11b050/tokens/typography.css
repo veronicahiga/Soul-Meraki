@@ -1,0 +1,17 @@
+:root{
+--font-serif:"Fraunces","Iowan Old Style",Georgia,serif;
+--font-sans:"SM Gill Sans","Gill Sans Nova","Gill Sans","Gill Sans MT",Calibri,sans-serif;
+--font-sans-condensed:"SM Gill Sans Condensed","Gill Sans Nova Condensed","SM Gill Sans",sans-serif;
+
+--weight-light:300;--weight-regular:400;--weight-semibold:600;--weight-sans-label:500;
+
+/* Scale (desktop) */
+--size-hero:72px;--size-display:56px;--size-h1:44px;--size-h2:34px;--size-h3:26px;--size-lead:22px;
+--size-body:19px;--size-body-lg:20px;--size-ui:17px;--size-caption:15px;--size-eyebrow:13px;--size-footnote:13px;
+
+--leading-display:1.15;--leading-heading:1.25;--leading-body:1.6;--leading-ui:1.4;
+--tracking-display:-0.01em;--tracking-body:0;--tracking-eyebrow:0.15em;--tracking-button:0.08em;
+
+--measure:64ch;
+--fraunces-soft:"SOFT" 50,"WONK" 0; /* @kind font */
+}

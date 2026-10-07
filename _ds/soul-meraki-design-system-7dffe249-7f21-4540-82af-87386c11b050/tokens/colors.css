@@ -1,0 +1,39 @@
+:root{
+/* Neutros base (~90% de cada superficie). Blanco = fondo por defecto; Marfil (paper) = fondo alterno / packaging */
+--sm-paper:#F6F3EE;
+--sm-white:#FFFFFF;
+--sm-ink:#1C1D1D;
+--sm-ink-70:rgba(28,29,29,.70);
+--sm-ink-15:rgba(28,29,29,.15);
+/* Tintes de la hoja de paleta (Marrón 1 al 8% / 25% sobre blanco) */
+--sm-marro-tint-8:#F2F1F0;
+--sm-marro-tint-25:#D6D3D2;
+/* Familias de sentimiento — UNA por pieza. Nivel 1 = color principal, Nivel 2 = hover/secundario */
+--sm-verd-1:#293B38;--sm-verd-2:#37534F;
+--sm-burdeus-1:#783132;--sm-burdeus-2:#91373A;
+--sm-marro-1:#5D5049;--sm-marro-2:#796057;
+
+/* Alias semánticos */
+--surface-page:var(--sm-white);
+--surface-raised:var(--sm-white);
+--surface-alt:var(--sm-paper);
+--surface-alt-2:var(--sm-marro-tint-8);
+--surface-inverse:var(--sm-ink);
+--text-body:var(--sm-ink);
+--text-secondary:var(--sm-ink-70);
+--text-inverse:var(--sm-white);
+--border-hairline:var(--sm-ink-15);
+--border-strong:var(--sm-ink);
+--focus-ring:var(--sm-ink);
+
+/* Sentimiento activo — Verde por defecto (B2B). Se cambia por pieza con [data-sentiment]. */
+--sentiment-1:var(--sm-verd-1);
+--sentiment-2:var(--sm-verd-2);
+--accent:var(--sentiment-1);
+--accent-hover:var(--sentiment-2);
+--on-accent:var(--sm-white);
+}
+[data-sentiment="verd"]{--sentiment-1:var(--sm-verd-1);--sentiment-2:var(--sm-verd-2)}
+[data-sentiment="burdeus"]{--sentiment-1:var(--sm-burdeus-1);--sentiment-2:var(--sm-burdeus-2)}
+[data-sentiment="marro"]{--sentiment-1:var(--sm-marro-1);--sentiment-2:var(--sm-marro-2)}
+[data-sentiment="condol"]{--sentiment-1:var(--sm-ink);--sentiment-2:var(--sm-ink-70)}
