@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/base.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/styles.css">
+  <script src="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/_ds_bundle.js"></script>
+  <style>
+    body{margin:0;background:#FFFFFF}
+    a{color:var(--text-body)}
+    a:hover{color:var(--accent)}
+  </style>
+</helmet>
+<div data-sentiment="condol" style="--sentiment-1: var(--sm-ink); --sentiment-2: var(--sm-ink-70); --accent: var(--sm-ink); --accent-hover: var(--sm-ink-70); background: var(--surface-page); color: var(--text-body); min-height: 100vh;">
+
+  <div data-screen-label="01 Hero" ref="{{ heroRef }}" style="position: relative; isolation: isolate; background: #1C1D1D url('assets/hero-vino.jpg') center / cover no-repeat; color: var(--sm-white); --text-body: var(--sm-white); --text-secondary: var(--sm-white); --accent: var(--sm-white); --accent-hover: var(--sm-paper); --on-accent: var(--sm-ink);">
+    <video ref="{{ videoRef }}" src="assets/hero-video.mp4" poster="assets/hero-vino.jpg" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; pointer-events: none;"></video>
+    <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background-color: #1C1D1D6A"></div>
+    <header style="display: flex; justify-content: center; padding: 48px 32px 0;">
+      <a href="#" aria-label="Soul Meraki" style="display: flex;"><img src="assets/logo-soulmeraki-blanc.svg" alt="Soul Meraki" style="height: 96px; width: 56px; display: block"></a>
+    </header>
+    <div style="min-height: calc(100svh - 144px); margin: 0; padding: 48px clamp(24px, 5vw, 56px) 72px; display: flex; flex-direction: column; justify-content: flex-end; gap: 48px;">
+      <div style="flex: 1 1 auto; min-height: clamp(96px, 20vh, 240px);"></div>
+      <div style="display: flex; flex-direction: column; gap: 24px; text-align: left;">
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="hero" hint-size="100%,130px"><span style="display: block; font-size: clamp(34px, 5.6vw, 52px); text-wrap: balance;"><span style="display: block; font-size: 45px">Donde no llegan las palabras</span><span style="display: block; font-style: italic; font-size: 45px">Ni tampoco el silencio</span></span></x-import>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px;">
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; flex: 1 1 360px; max-width: 720px; text-wrap: balance">Ante la pérdida de un familiar o de alguien muy querido, hay sentimientos que cuesta expresar. Porque no siempre encontramos las palabras. Y hay emociones que van mucho más allá de lo que podemos decir. Pero están y necesitamos encontrar una forma de hacerlas sentir.</p>
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-body); margin: 0; flex: 1 1 320px; max-width: 540px; text-align: justify; text-align-last: left; hyphens: auto;" lang="es">En Soul Meraki creamos experiencias para acompañar esos momentos y expresar, con sensibilidad y cuidado, aquello que las palabras no <br>alcanzan a decir.</p>
+        </div>
+      </div>
+      <div style="display: flex; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.3);" onClick="{{ toPropuesta }}">
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Button" variant="{{ ctaVariant }}" href="#propuesta" hint-size="260px,52px">Descubre Soul Meraki</x-import>
+      </div>
+    </div>
+  </div>
+
+  <div data-screen-label="02 Propuesta">
+    <section id="propuesta" style="background: var(--sm-paper); color: var(--sm-ink); padding: clamp(56px, 8vw, 72px) clamp(24px, 5vw, 56px); height: 1200px">
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
+          <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,110px"><span style="display: block; font-size: clamp(32px, 7vw, 44px);"><span style="display: block;">Palabras que permanecerán</span><span style="display: block;">para siempre</span></span></x-import>
+          <p style="font-size: 16px; line-height: 1.6; margin: 0; text-wrap: pretty">En los momentos de despedida, hay mucho que sentir y muy poco que decir. Soul Meraki nace para acompañar a las familias en ese momento con un gesto cuidado y personal, que les permita expresar aquello que quizá no encuentran cómo decir.</p>
+        </div>
+        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 0 auto; margin-top: max(24px, min((100vw - 840px) * 100, 128px + clamp(96px, 25vw, 320px))); margin-bottom: clamp(0px, (840px - 100vw) * 100, 200px); max-width: 440px; text-wrap: pretty">Una forma de transformar el recuerdo, el agradecimiento y el cariño en algo que pueda sentirse y conservarse.</p>
+      </div>
+      <div style="margin-top: clamp(64px, 10vw, 128px); padding-top: clamp(48px, 8vw, 96px); border-top: 1px solid var(--border-hairline); display: flex; flex-direction: column; align-items: center; gap: 40px;">
+        
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Quote" size="{{ 38 }}" hint-size="100%,110px"><span style="display: block; font-size: clamp(22px, 5vw, 30px)">Una manera diferente de acompañar.</span><span style="display: block; font-size: clamp(22px, 5vw, 30px)">Con sensibilidad, con respeto y desde el corazón.</span></x-import>
+      </div>
+    </section>
+  </div>
+
+  <div data-screen-label="03 Contenido del envío">
+    <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Section" tone="white" pad="lg" hint-size="100%,1400px">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; padding: clamp(0px, 15vw - 92px, 100px) 0;">
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" style="max-width: 760px;" hint-size="100%,90px"></x-import><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Ornament" mark="petal" size="{{ 20 }}" hint-size="20px,20px"></x-import><span data-reveal="0" style="font-size: clamp(28px, 6vw, 37px); line-height: 1.2; font-weight: 300; text-wrap: balance">Cómo acompañar el silencio y honrar la memoria</span><div style="display: flex; flex-direction: column; gap: 5px; max-width: 900px">
+          
+          <p data-reveal="250" style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 900px; align-self: center; font-weight: 300; color: #1C1D1D">Cada envío Soul Meraki se crea pensando en la persona que ya no está y en quienes quedan.</p><p data-reveal="500" style="font-size: 17px; line-height: 1.6; margin: 0; color: var(--sm-ink); max-width: 900px; align-self: center; font-weight: 300">En su interior, una selección de detalles elegidos para acompañar ese momento:</p>
+        </div>
+        
+      </div>
+    </x-import>
+    <div style="display: flex; flex-direction: column;">
+      <div style="display: flex; flex-wrap: wrap-reverse; min-height: 570px">
+        <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
+          
+          
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">La carpeta y dedicatoria, para custodiar lo que no muere nunca: el afecto</h3><p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">Un documento diseñado para guardar las palabras que reconfortan, el mensaje personalizado y los recuerdos que la familia querrá conservar para siempre.</p>
+        </div>
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: #F2F1F0; display: flex; align-items: center; justify-content: center;" role="img" aria-label="Imagen – Carpeta y dedicatoria">
+          <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary);">Imagen – Carpeta y dedicatoria</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; min-height: 570px">
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: #F2F1F0; display: flex; align-items: center; justify-content: center;" role="img" aria-label="Imagen – Vino">
+          <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary);">Imagen – Vino</div>
+        </div>
+        <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
+          
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">El vino, para honrar<br>su memoria</h3>
+          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">Una botella seleccionada de autor no para celebrar, sino para invitar a un brindis sereno y pausado. Un pretexto para reunirse en intimidad, compartir historias y rendir un homenaje sincero a la vida y al legado de quien ya no está.</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap-reverse; min-height: 570px">
+        <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
+          
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">La vela aromática, <br>para guiar el recuerdo</h3>
+          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">Una luz cálida pensada para ofrecer un instante de paz. Su aroma y su llama encendida actúan como un refugio visual y sensorial en el hogar.</p>
+        </div>
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: #F2F1F0; display: flex; align-items: center; justify-content: center;" role="img" aria-label="Imagen – Vela aromática">
+          <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary);">Imagen – Vela aromática</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; min-height: 570px">
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: #F2F1F0; display: flex; align-items: center; justify-content: center;" role="img" aria-label="Imagen – La Melodía">
+          <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary);">Imagen – La Melodía</div>
+        </div>
+        <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
+          
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">La Melodía, <br>un receso de paz</h3>
+          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">Acceso mediante código QR a un espacio digital con una selección musical concebida como un refugio sonoro. Un lugar al que volver siempre que se necesite reecontrarse con su esencia.</p>
+        </div>
+      </div>
+    </div>
+
+    <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Section" tone="{{ pauseTone }}" pad="lg" divider="{{ pauseDivider }}" hint-size="100%,560px">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 48px;">
+        <p data-reveal="0" style="font-size: clamp(19px, 4.5vw, 22px); line-height: 1.6; margin: 0; max-width: 40ch; font-weight: 300">Porque hay palabras que no encontramos.<br>Y hay silencios que lo dicen todo.</p>
+        <div style="width: min(358px, 100%); aspect-ratio: 358 / 430; background: #F2F1F0; display: flex; align-items: center; justify-content: center;" role="img" aria-label="Imagen – Pausa">
+          <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(28,29,29,.7);">VIDEO/GIF</div>
+        </div>
+        <div data-reveal="0" style="max-width: 720px; width: 100%;"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Quote" size="{{ 26 }}" style="max-width: 720px;" hint-size="100%,90px"><span style="display: block;">Soul Meraki</span><span style="display: block;">Una forma de hacer sentir cuando las palabras no llegan.</span></x-import></div>
+      </div>
+    </x-import>
+  </div>
+
+  <div data-screen-label="04 Contacto">
+    <section id="contacto" style="position: relative; isolation: isolate; min-height: clamp(600px, 100svh, 760px); padding: clamp(96px, 16vw, 160px) clamp(24px, 5vw, 56px) 72px; display: flex; align-items: flex-end; color: var(--sm-white); --text-body: var(--sm-white); --text-secondary: var(--sm-white); --accent: var(--sm-white); --accent-hover: var(--sm-paper); --on-accent: var(--sm-ink); background-color: var(--sm-marro-2)">
+      <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; display: flex; align-items: flex-start; justify-content: flex-end; padding: 32px clamp(24px, 5vw, 56px);">
+        <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,.7);">IMAGEN DE FONDO</div>
+      </div>
+      <div style="width: 100%; max-width: 560px; display: flex; flex-direction: column; gap: 24px; text-align: left;">
+        <div data-reveal="0"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,56px"><span style="font-size: clamp(32px, 7vw, 44px);">Contacta con nosotros para….</span></x-import></div>
+        <p data-reveal="250" style="font-size: 16px; line-height: 1.6; margin: 0">Déjanos tus datos y nos podremos rápidamente en contacto contigo:</p>
+        <form data-reveal="500" onSubmit="{{ onSubmit }}" style="margin-top: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; --sm-white: transparent; --sm-ink: #FFFFFF; --border-hairline: rgba(255,255,255,.6);">
+          <div style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px;">
+            <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.TextField" label="Email" name="email" type="email" required="{{ true }}" hint-size="100%,82px"></x-import>
+            <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.TextField" label="Teléfono" name="telefono" type="tel" hint-size="100%,82px"></x-import>
+          </div>
+          <div style="--sm-white: #FFFFFF; --sm-ink: #1C1D1D;">
+            <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Button" variant="{{ ctaVariant }}" type="submit" hint-size="160px,52px">Enviar</x-import>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div data-screen-label="05 Origen de la marca">
+    <section style="position: relative; isolation: isolate; min-height: clamp(640px, 120vw, 900px); padding: clamp(120px, 20vw, 200px) clamp(24px, 5vw, 56px); background: #F2F1F0; color: var(--sm-ink); display: flex; align-items: center; justify-content: center;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; display: flex; align-items: flex-end; justify-content: flex-end; padding: 32px clamp(24px, 5vw, 56px);">
+        <div style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary);">IMAGEN DE FONDO</div>
+      </div>
+      <div style="max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center;">
+        <div data-reveal="0"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,48px"><span style="font-size: clamp(28px, 6vw, 36px); line-height: 1.2;">¿De dónde nace Soul Meraki?</span></x-import></div>
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <p data-reveal="250" style="font-size: 16px; line-height: 1.6; margin: 0">Soul Meraki nace de una experiencia personal. Su fundadora, publicista desde hace más de 30 años, vivió la pérdida de su marido y de una de sus mejores amigas con dos meses de diferencia.</p>
+          <p data-reveal="500" style="font-size: 16px; line-height: 1.6; margin: 0">Esa experiencia transformó su manera de entender los vínculos y cómo expresar mejor los sentimientos cuando se producen estos momentos tan intensos para que la huella y el recuerdo siempre permanezcan.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer style="border-top: 1px solid var(--border-hairline); padding: clamp(64px, 10vw, 96px) 24px 64px; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center;">
+    <img src="assets/logo-soulmeraki-tinta.svg" alt="Soul Meraki" style="height: 101px; width: 66px; display: block">
+    <div style="font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: 20px; text-wrap: balance;">Sentimientos encajados en la exclusividad de un instante.</div>
+    <div style="margin-top: 32px; font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.02em; color: var(--text-secondary);">© Soul Meraki 2026</div>
+  </footer>
+  <button type="button" aria-label="Volver al inicio" onClick="{{ toTop }}" tabindex="{{ topTab }}" style="position: fixed; right: clamp(16px, 4vw, 32px); bottom: clamp(16px, 4vw, 32px); z-index: 50; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; padding: 0; background: #FFFFFF; color: #1C1D1D; border: 1px solid #1C1D1D; border-radius: 0; cursor: pointer; font-family: var(--font-sans); font-size: 20px; line-height: 1; transition: opacity 400ms ease, background-color 400ms ease, color 400ms ease; opacity: {{ topOpacity }}; pointer-events: {{ topPointer }};" style-hover="background: #1C1D1D; color: #FFFFFF;">↑</button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ctaStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Contorno&quot;,&quot;Relleno&quot;,&quot;Texto&quot;],&quot;default&quot;:&quot;Contorno&quot;,&quot;tsType&quot;:&quot;'Contorno'|'Relleno'|'Texto'&quot;,&quot;section&quot;:&quot;CTA&quot;},&quot;darkPause&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Composición&quot;}}">
+class Component extends DCLogic {
+  state = { showTop: false, mobile: !!(window.matchMedia && window.matchMedia('(max-width: 839px)').matches) };
+  heroRef = React.createRef();
+  videoRef = React.createRef();
+  componentDidMount() {
+    const v = this.videoRef.current;
+    if (v) {
+      v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true;
+      const p = v.play(); p && p.catch && p.catch(() => {});
+    }
+    this.mq = window.matchMedia && window.matchMedia('(max-width: 839px)');
+    this.onMq = () => this.setState({ mobile: this.mq.matches });
+    this.mq && this.mq.addEventListener('change', this.onMq);
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.current = this.target = window.scrollY;
+    this.animating = false;
+    this.tick = () => {
+      this.current += (this.target - this.current) * 0.08;
+      if (Math.abs(this.target - this.current) < 0.5) {
+        this.current = this.target; window.scrollTo(0, this.current); this.animating = false; return;
+      }
+      window.scrollTo(0, this.current);
+      this.raf = requestAnimationFrame(this.tick);
+    };
+    this.start = () => {
+      if (!this.animating) { this.current = window.scrollY; this.animating = true; this.raf = requestAnimationFrame(this.tick); }
+    };
+    this.onWheel = (e) => {
+      if (reduced || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      let d = e.deltaY;
+      if (e.deltaMode === 1) d *= 16; else if (e.deltaMode === 2) d *= window.innerHeight;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (!this.animating) this.target = window.scrollY;
+      this.target = Math.max(0, Math.min(max, this.target + d));
+      this.start();
+    };
+    this.onScroll = () => {
+      const h = this.heroRef.current;
+      const lim = h ? h.offsetTop + h.offsetHeight : window.innerHeight;
+      const show = window.scrollY >= lim - 1;
+      if (show !== this.state.showTop) this.setState({ showTop: show });
+      if (!this.animating) this.current = this.target = window.scrollY;
+    };
+    if (!reduced && 'IntersectionObserver' in window) {
+      this.io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'none';
+          this.io.unobserve(en.target);
+        });
+      }, { threshold: 0.3, rootMargin: '0px 0px -8% 0px' });
+      this.setupReveal = () => {
+        document.querySelectorAll('[data-reveal]:not([data-reveal-ready])').forEach(el => {
+          el.setAttribute('data-reveal-ready', '');
+          if (el.tagName === 'SPAN') el.style.display = 'block';
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(14px)';
+          el.style.transition = 'opacity 1400ms ease, transform 1400ms ease';
+          el.style.transitionDelay = (el.dataset.reveal || 0) + 'ms';
+          requestAnimationFrame(() => this.io && this.io.observe(el));
+        });
+      };
+      this.setupReveal();
+      this.mo = new MutationObserver(() => this.setupReveal());
+      this.mo.observe(document.body, { childList: true, subtree: true });
+    }
+    window.addEventListener('wheel', this.onWheel, { passive: false });
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() {
+    this.mq && this.mq.removeEventListener('change', this.onMq);
+    window.removeEventListener('wheel', this.onWheel);
+    window.removeEventListener('scroll', this.onScroll);
+    cancelAnimationFrame(this.raf);
+    this.io && this.io.disconnect();
+    this.mo && this.mo.disconnect();
+  }
+  renderVals() {
+    const p = this.props;
+    const cta = { Contorno: 'secondary', Relleno: 'primary', Texto: 'text' }[p.ctaStyle ?? 'Contorno'] || 'secondary';
+    const dark = p.darkPause ?? true;
+    return {
+      ctaVariant: cta,
+      alignL: this.state.mobile ? 'center' : 'flex-start',
+      alignR: this.state.mobile ? 'center' : 'flex-end',
+      textL: this.state.mobile ? 'center' : 'left',
+      textR: this.state.mobile ? 'center' : 'right',
+      pauseTone: dark ? 'ink' : 'white',
+      pauseDivider: !dark,
+      pauseInk: dark ? 'var(--sm-white)' : 'var(--sm-ink)',
+      onSubmit: (e) => e.preventDefault(),
+      heroRef: this.heroRef,
+      videoRef: this.videoRef,
+      topOpacity: this.state.showTop ? 1 : 0,
+      topPointer: this.state.showTop ? 'auto' : 'none',
+      topTab: this.state.showTop ? 0 : -1,
+      toPropuesta: (e) => {
+        const el = document.getElementById('propuesta');
+        if (!el) return;
+        e && e.preventDefault && e.preventDefault();
+        const y = el.getBoundingClientRect().top + window.scrollY;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, y); return; }
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        this.target = Math.max(0, Math.min(max, y)); this.start && this.start();
+      },
+      toTop: () => {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, 0); return; }
+        this.target = 0; this.start && this.start();
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
