@@ -45,7 +45,8 @@
   </div>
 
   <div data-screen-label="02 Propuesta">
-    <section id="propuesta" style="background: var(--sm-paper); color: var(--sm-ink); padding: clamp(56px, 8vw, 72px) clamp(24px, 5vw, 56px); height: 1200px">
+    <section id="propuesta" style="position: relative; isolation: isolate; background: url(&quot;./section-2-bg-muzlx8di-vh8c.png&quot;) center / cover no-repeat; color: var(--sm-white); --text-body: var(--sm-white); --text-secondary: var(--sm-white); --border-hairline: rgba(255,255,255,.35); padding: clamp(56px, 8vw, 72px) clamp(24px, 5vw, 56px); height: 1200px">
+      <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background-color: #1C1D1D1F"></div>
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
           <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,110px"><span style="display: block; font-size: clamp(32px, 7vw, 44px);"><span style="display: block;">Palabras que permanecerán</span><span style="display: block;">para siempre</span></span></x-import>
@@ -62,8 +63,8 @@
 
   <div data-screen-label="03 Contenido del envío">
     <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Section" tone="white" pad="lg" hint-size="100%,1400px">
-      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; padding: clamp(0px, 15vw - 92px, 100px) 0;">
-        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" style="max-width: 760px;" hint-size="100%,90px"></x-import><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Ornament" mark="petal" size="{{ 20 }}" hint-size="20px,20px"></x-import><span data-reveal="0" style="font-size: clamp(28px, 6vw, 37px); line-height: 1.2; font-weight: 300; text-wrap: balance">Cómo acompañar el silencio y honrar la memoria</span><div style="display: flex; flex-direction: column; gap: 5px; max-width: 900px">
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 30px; padding: clamp(0px, 15vw - 92px, 100px) 0; height: 240px">
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" style="max-width: 760px;" hint-size="100%,90px"></x-import><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Ornament" mark="petal" size="{{ 20 }}" hint-size="20px,20px"></x-import><span data-reveal="0" style="font-size: clamp(28px, 6vw, 37px); line-height: 1.2; font-weight: 300; text-wrap: balance">Cómo acompañar el silencio y honrar la memoria</span><div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; max-width: 900px; width: 100%">
           
           <p data-reveal="250" style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 900px; align-self: center; font-weight: 300; color: #1C1D1D">Cada envío Soul Meraki se crea pensando en la persona que ya no está y en quienes quedan.</p><p data-reveal="500" style="font-size: 17px; line-height: 1.6; margin: 0; color: var(--sm-ink); max-width: 900px; align-self: center; font-weight: 300">En su interior, una selección de detalles elegidos para acompañar ese momento:</p>
         </div>
@@ -240,6 +241,29 @@ class Component extends DCLogic {
     window.addEventListener('wheel', this.onWheel, { passive: false });
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
+    this.setupPropuestaReveal();
+  }
+  setupPropuestaReveal(tries = 0) {
+    if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    const sec = document.getElementById('propuesta');
+    const sel = '#propuesta > div:nth-child(2) > div > *, #propuesta > div:nth-child(2) > p, #propuesta > div:nth-child(3) > *';
+    const els = sec ? [...sec.querySelectorAll(sel)].map(el => getComputedStyle(el).display === 'contents' ? el.firstElementChild : el).filter(Boolean) : [];
+    if (els.length < 4 && tries < 40) { this.revealT = setTimeout(() => this.setupPropuestaReveal(tries + 1), 100); return; }
+    if (!els.length) return;
+    els.forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = `opacity 1400ms ease ${i * 220}ms, transform 1600ms cubic-bezier(.22,.61,.36,1) ${i * 220}ms`;
+    });
+    this.revealIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        this.revealIO.unobserve(e.target);
+      });
+    }, { threshold: 0.2 });
+    els.forEach(el => this.revealIO.observe(el));
   }
   componentWillUnmount() {
     this.mq && this.mq.removeEventListener('change', this.onMq);
@@ -248,6 +272,8 @@ class Component extends DCLogic {
     cancelAnimationFrame(this.raf);
     this.io && this.io.disconnect();
     this.mo && this.mo.disconnect();
+    this.revealIO && this.revealIO.disconnect();
+    clearTimeout(this.revealT);
   }
   renderVals() {
     const p = this.props;
