@@ -26,20 +26,39 @@
   <div data-screen-label="01 Hero" ref="{{ heroRef }}" style="position: relative; isolation: isolate; color: var(--sm-white); --text-body: var(--sm-white); --text-secondary: var(--sm-white); --accent: var(--sm-white); --accent-hover: var(--sm-paper); --on-accent: var(--sm-ink); background-color: #cccccc">
     <video ref="{{ videoRef }}" src="assets/hero-video.mp4" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; pointer-events: none;"></video>
     <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background-color: #1C1D1D45"></div>
-    <header style="display: flex; justify-content: center; padding: 48px 32px 0;">
+    <header style="display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; padding: 28px clamp(24px, 5vw, 56px) 0;">
+      <button type="button" aria-label="Menú" aria-expanded="{{ menuOpen }}" onClick="{{ openMenu }}" style="justify-self: start; display: flex; align-items: center; gap: 16px; min-height: 44px; padding: 0; background: none; border: 0; color: var(--sm-white); cursor: pointer; font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase;">
+        <span aria-hidden="true" style="display: flex; flex-direction: column; gap: 6px; width: 24px;"><span style="display: block; height: 1px; background: currentColor;"></span><span style="display: block; height: 1px; background: currentColor;"></span></span>
+        <span>Menú</span>
+      </button>
       <a href="#" aria-label="Soul Meraki" style="display: flex;"><img src="assets/logo-soulmeraki-blanc.svg" alt="Soul Meraki" style="height: 96px; width: 56px; display: block"></a>
+      <div ref="{{ langRef }}" style="justify-self: end; position: relative; color: var(--sm-white);">
+        <button type="button" aria-label="Idioma" aria-haspopup="listbox" aria-expanded="{{ langOpen }}" onClick="{{ toggleLang }}" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 4px; background: none; border: 0; color: var(--sm-white); cursor: pointer; font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.15em;">
+          <span>{{ lang }}</span>
+          <span aria-hidden="true" style="display: block; width: 6px; height: 6px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: {{ chevronT }}; transition: transform 400ms ease;"></span>
+        </button>
+        <sc-if value="{{ langOpen }}" hint-placeholder-val="{{ false }}">
+          <ul role="listbox" aria-label="Idioma" style="position: absolute; top: 100%; right: -12px; z-index: 10; margin: 4px 0 0; padding: 8px 0; list-style: none; background: var(--sm-ink); min-width: 64px; display: flex; flex-direction: column;">
+            <sc-for list="{{ langOpts }}" as="o" hint-placeholder-count="2">
+              <li role="option" aria-selected="{{ o.sel }}">
+                <button type="button" onClick="{{ o.pick }}" style="display: block; width: 100%; min-height: 44px; padding: 0 20px; background: none; border: 0; color: var(--sm-white); text-align: left; cursor: pointer; font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.15em; opacity: {{ o.op }}; transition: opacity 400ms ease;" style-hover="opacity: 1;">{{ o.code }}</button>
+              </li>
+            </sc-for>
+          </ul>
+        </sc-if>
+      </div>
     </header>
-    <div style="min-height: calc(100svh - 144px); margin: 0; padding: 48px clamp(24px, 5vw, 56px) 72px; display: flex; flex-direction: column; justify-content: flex-end; gap: 48px;">
+    <div style="min-height: calc(100svh - 124px); margin: 0; padding: 48px clamp(24px, 5vw, 56px) 112px; display: flex; flex-direction: column; justify-content: flex-end; gap: 48px;">
       <div style="flex: 1 1 auto; min-height: clamp(96px, 20vh, 240px);"></div>
       <div style="display: flex; flex-direction: column; gap: 24px; text-align: left;">
-        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="hero" hint-size="100%,130px"><span style="display: block; font-size: clamp(34px, 5.6vw, 52px); text-wrap: balance;"><span style="display: block; font-size: 45px">Donde no llegan las palabras</span><span style="display: block; font-style: italic; font-size: 45px">Ni tampoco el silencio</span></span></x-import>
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="hero" hint-size="100%,130px"><span style="display: block; font-size: clamp(34px, 5.6vw, 52px); text-wrap: balance;"><span style="display: block; font-size: 45px"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">On no arriben les paraules</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Donde no llegan las palabras</sc-if></span><span style="display: block; font-style: italic; font-size: 45px"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Ni tampoc el silenci</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Ni tampoco el silencio</sc-if></span></span></x-import>
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 64px;">
-          <p style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; flex: 1 1 360px; max-width: 720px; text-wrap: balance">Ante la pérdida de un familiar o de alguien muy querido, hay sentimientos que cuesta expresar. Porque no siempre encontramos las palabras. Y hay emociones que van mucho más allá de lo que podemos decir. Pero están y necesitamos encontrar una forma de hacerlas sentir.</p>
-          <p style="font-size: 16px; line-height: 1.6; color: var(--text-body); margin: 0; flex: 1 1 320px; max-width: 540px; text-align: justify; text-align-last: left; hyphens: auto;" lang="es">En Soul Meraki creamos experiencias para acompañar esos momentos y expresar, con sensibilidad y cuidado, aquello que las palabras no <br>alcanzan a decir.</p>
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; flex: 1 1 360px; max-width: 720px; text-wrap: balance"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Davant la pèrdua d'un familiar o d'algú molt estimat, hi ha sentiments que costa expressar. Perquè no sempre trobem les paraules. I hi ha emocions que van molt més enllà del que podem dir. Però hi són i necessitem trobar una manera de fer-les sentir.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Ante la pérdida de un familiar o de alguien muy querido, hay sentimientos que cuesta expresar. Porque no siempre encontramos las palabras. Y hay emociones que van mucho más allá de lo que podemos decir. Pero están y necesitamos encontrar una forma de hacerlas sentir.</sc-if></p>
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-body); margin: 0; flex: 1 1 320px; max-width: 540px; text-align: justify; text-align-last: left; hyphens: auto;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">A Soul Meraki creem experiències per acompanyar aquests moments i expressar, amb sensibilitat i cura, allò que les paraules no <br>arriben a dir.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">En Soul Meraki creamos experiencias para acompañar esos momentos y expresar, con sensibilidad y cuidado, aquello que las palabras no <br>alcanzan a decir.</sc-if></p>
         </div>
       </div>
       <div style="display: flex; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.3);" onClick="{{ toPropuesta }}">
-        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Button" variant="{{ ctaVariant }}" href="#propuesta" hint-size="260px,52px">Descubre Soul Meraki</x-import>
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Button" variant="{{ ctaVariant }}" href="#propuesta" hint-size="260px,52px"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Descobreix Soul Meraki</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Descubre Soul Meraki</sc-if></x-import>
       </div>
     </div>
   </div>
@@ -49,24 +68,24 @@
       <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background-color: #1C1D1D1F"></div>
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px;">
-          <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,110px"><span style="display: block; font-size: clamp(32px, 7vw, 44px);"><span style="display: block;">Palabras que permanecerán</span><span style="display: block;">para siempre</span></span></x-import>
-          <p style="font-size: 16px; line-height: 1.6; margin: 0; text-wrap: pretty">En los momentos de despedida, hay mucho que sentir y muy poco que decir. Soul Meraki nace para acompañar a las familias en ese momento con un gesto cuidado y personal, que les permita expresar aquello que quizá no encuentran cómo decir.</p>
+          <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,110px"><span style="display: block; font-size: clamp(32px, 7vw, 44px);"><span style="display: block;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Paraules que romandran</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Palabras que permanecerán</sc-if></span><span style="display: block;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">per sempre</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">para siempre</sc-if></span></span></x-import>
+          <p style="font-size: 16px; line-height: 1.6; margin: 0; text-wrap: pretty"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">En els moments de comiat, hi ha molt per sentir i molt poc per dir. Soul Meraki neix per acompanyar les famílies en aquest moment amb un gest acurat i personal, que els permeti expressar allò que potser no troben com dir.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">En los momentos de despedida, hay mucho que sentir y muy poco que decir. Soul Meraki nace para acompañar a las familias en ese momento con un gesto cuidado y personal, que les permita expresar aquello que quizá no encuentran cómo decir.</sc-if></p>
         </div>
-        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 0 auto; margin-top: max(24px, min((100vw - 840px) * 100, 128px + clamp(96px, 25vw, 320px))); margin-bottom: clamp(0px, (840px - 100vw) * 100, 200px); max-width: 440px; text-wrap: pretty">Una forma de transformar el recuerdo, el agradecimiento y el cariño en algo que pueda sentirse y conservarse.</p>
+        <p style="font-size: 16px; line-height: 1.6; margin: 0 0 0 auto; margin-top: max(24px, min((100vw - 840px) * 100, 128px + clamp(96px, 25vw, 320px))); margin-bottom: clamp(0px, (840px - 100vw) * 100, 200px); max-width: 440px; text-wrap: pretty"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Una manera de transformar el record, l'agraïment i l'estima en alguna cosa que es pugui sentir i conservar.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Una forma de transformar el recuerdo, el agradecimiento y el cariño en algo que pueda sentirse y conservarse.</sc-if></p>
       </div>
       <div style="margin-top: clamp(64px, 10vw, 128px); padding-top: clamp(48px, 8vw, 96px); border-top: 1px solid var(--border-hairline); display: flex; flex-direction: column; align-items: center; gap: 40px;">
         
-        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Quote" size="{{ 38 }}" hint-size="100%,110px"><span data-reveal="0" data-reveal-dur="2200" style="display: block; font-size: clamp(22px, 5vw, 30px)">Una manera diferente de acompañar.</span><span data-reveal="900" data-reveal-dur="2200" style="display: block; font-size: clamp(22px, 5vw, 30px)">Con sensibilidad, con respeto y desde el corazón.</span></x-import>
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Quote" size="{{ 38 }}" hint-size="100%,110px"><span data-reveal="0" data-reveal-dur="2200" style="display: block; font-size: clamp(22px, 5vw, 30px)"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Una manera diferent d'acompanyar.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Una manera diferente de acompañar.</sc-if></span><span data-reveal="900" data-reveal-dur="2200" style="display: block; font-size: clamp(22px, 5vw, 30px)"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Amb sensibilitat, amb respecte i des del cor.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Con sensibilidad, con respeto y desde el corazón.</sc-if></span></x-import>
       </div>
     </section>
   </div>
 
-  <div data-screen-label="03 Contenido del envío">
+  <div data-screen-label="03 Contenido del envío" id="envio">
     <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Section" tone="white" pad="lg" hint-size="100%,1400px">
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 30px; padding: clamp(0px, 15vw - 92px, 100px) 0; height: 240px">
-        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" style="max-width: 760px;" hint-size="100%,90px"></x-import><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Ornament" mark="petal" size="{{ 20 }}" hint-size="20px,20px"></x-import><span data-reveal="0" style="font-size: clamp(28px, 6vw, 37px); line-height: 1.2; font-weight: 300; text-wrap: balance">Cómo acompañar el silencio y honrar la memoria</span><div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; max-width: 900px; width: 100%">
+        <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" style="max-width: 760px;" hint-size="100%,90px"></x-import><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Ornament" mark="petal" size="{{ 20 }}" hint-size="20px,20px"></x-import><span data-reveal="0" style="font-size: clamp(28px, 6vw, 37px); line-height: 1.2; font-weight: 300; text-wrap: balance"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Com acompanyar el silenci i honorar la memòria</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Cómo acompañar el silencio y honrar la memoria</sc-if></span><div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; max-width: 900px; width: 100%">
           
-          <p data-reveal="250" style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 900px; align-self: center; font-weight: 300; color: #1C1D1D">Cada envío Soul Meraki se crea pensando en la persona que ya no está y en quienes quedan.</p><p data-reveal="500" style="font-size: 17px; line-height: 1.6; margin: 0; color: var(--sm-ink); max-width: 900px; align-self: center; font-weight: 300">En su interior, una selección de detalles elegidos para acompañar ese momento:</p>
+          <p data-reveal="250" style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 900px; align-self: center; font-weight: 300; color: #1C1D1D"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Cada enviament Soul Meraki es crea pensant en la persona que ja no hi és i en els qui queden.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Cada envío Soul Meraki se crea pensando en la persona que ya no está y en quienes quedan.</sc-if></p><p data-reveal="500" style="font-size: 17px; line-height: 1.6; margin: 0; color: var(--sm-ink); max-width: 900px; align-self: center; font-weight: 300"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Al seu interior, una selecció de detalls escollits per acompanyar aquest moment:</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">En su interior, una selección de detalles elegidos para acompañar ese momento:</sc-if></p>
         </div>
         
       </div>
@@ -76,40 +95,40 @@
         <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
           
           
-          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">La carpeta y dedicatoria, para custodiar lo que no muere nunca: el afecto</h3><p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">Un documento diseñado para guardar las palabras que reconfortan, el mensaje personalizado y los recuerdos que la familia querrá conservar para siempre.</p>
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">La carpeta i la dedicatòria, per custodiar allò que no mor mai: l'afecte</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">La carpeta y dedicatoria, para custodiar lo que no muere nunca: el afecto</sc-if></h3><p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Un document dissenyat per guardar les paraules que reconforten, el missatge personalitzat i els records que la família voldrà conservar per sempre.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Un documento diseñado para guardar las palabras que reconfortan, el mensaje personalizado y los recuerdos que la familia querrá conservar para siempre.</sc-if></p>
         </div>
-        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./dedicatoria-mv137n0k-zvj4.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="Imagen – Carpeta y dedicatoria">
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./dedicatoria-mv137n0k-zvj4.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="{{ tImg1 }}">
           
         </div>
       </div>
       <div style="display: flex; flex-wrap: wrap; min-height: 570px">
-        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./vino-y-aceite-mv1371i9-0yfm.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="Imagen – Vino">
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./vino-y-aceite-mv1371i9-0yfm.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="{{ tImg2 }}">
           
         </div>
         <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
           
-          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">El vino o aceite de autor,<br>para honrar su memoria</h3>
-          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">Una botella seleccionada de autor no para celebrar, sino para invitar a un brindis sereno y pausado. Un pretexto para reunirse en intimidad, compartir historias y rendir un homenaje sincero a la vida y al legado de quien ya no está.</p>
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">El vi o oli d'autor,<br>per honorar la seva memòria</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">El vino o aceite de autor,<br>para honrar su memoria</sc-if></h3>
+          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Una ampolla seleccionada d'autor no per celebrar, sinó per convidar a un brindis serè i pausat. Un pretext per reunir-se en la intimitat, compartir històries i retre un homenatge sincer a la vida i al llegat de qui ja no hi és.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Una botella seleccionada de autor no para celebrar, sino para invitar a un brindis sereno y pausado. Un pretexto para reunirse en intimidad, compartir historias y rendir un homenaje sincero a la vida y al legado de quien ya no está.</sc-if></p>
         </div>
       </div>
       <div style="display: flex; flex-wrap: wrap-reverse; min-height: 570px">
         <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
           
-          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">La vela aromática, <br>para guiar el recuerdo</h3>
-          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">Una luz cálida pensada para ofrecer un instante de paz. Su aroma y su llama encendida actúan como un refugio visual y sensorial en el hogar.</p>
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">L'espelma aromàtica, <br>per guiar el record</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">La vela aromática, <br>para guiar el recuerdo</sc-if></h3>
+          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Una llum càlida pensada per oferir un instant de pau. La seva aroma i la seva flama encesa actuen com un refugi visual i sensorial a la llar.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Una luz cálida pensada para ofrecer un instante de paz. Su aroma y su llama encendida actúan como un refugio visual y sensorial en el hogar.</sc-if></p>
         </div>
-        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./vela-muznocvg-gnd4.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="Imagen – Vela aromática">
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./vela-muznocvg-gnd4.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="{{ tImg3 }}">
           
         </div>
       </div>
       <div style="display: flex; flex-wrap: wrap; min-height: 570px">
-        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./musica-muzo260g-au5o.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="Imagen – La Melodía">
+        <div style="flex: 1 1 420px; min-width: 0; min-height: clamp(300px, 80vw, 440px); background: url(&quot;./musica-muzo260g-au5o.png&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center" role="img" aria-label="{{ tImg4 }}">
           
         </div>
         <div style="flex: 1 1 420px; min-width: 0; padding: clamp(48px, 8vw, 72px) clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: clamp(24px, 5vw, 48px)">
           
-          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};">La Melodía, <br>un receso de paz</h3>
-          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};">Acceso mediante código QR a un espacio digital con una selección musical concebida como un refugio sonoro. Un lugar al que volver siempre que se necesite reecontrarse con su esencia.</p>
+          <h3 data-reveal="0" style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.2; letter-spacing: -0.01em; margin: 0; max-width: 520px; text-wrap: pretty; align-self: {{ alignR }}; text-align: {{ textR }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">La Melodia, <br>un recés de pau</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">La Melodía, <br>un receso de paz</sc-if></h3>
+          <p data-reveal="300" style="font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 460px; text-wrap: pretty; align-self: {{ alignL }}; text-align: {{ textL }};"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Accés mitjançant codi QR a un espai digital amb una selecció musical concebuda com un refugi sonor. Un lloc on tornar sempre que calgui retrobar-se amb la seva essència.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Acceso mediante código QR a un espacio digital con una selección musical concebida como un refugio sonoro. Un lugar al que volver siempre que se necesite reecontrarse con su esencia.</sc-if></p>
         </div>
       </div>
     </div>
@@ -118,22 +137,22 @@
       <video ref="{{ video2Ref }}" src="assets/pausa-video.mp4" poster="./secion-3-bg2-muzw4lvr-6ny0.png" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; pointer-events: none;"></video>
       <div aria-hidden="true" style="position: absolute; inset: 0; z-index: -1; background-color: #1C1D1D31"></div>
       <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: clamp(480px, 70svh, 680px);">
-        <p data-reveal="0" style="font-size: clamp(18px, 4vw, 20px); line-height: 1.6; margin: 0; max-width: 34ch; font-weight: 300; align-self: flex-start; text-align: left;">Porque hay palabras que no encontramos.<br>Y hay silencios que lo dicen todo.</p>
+        <p data-reveal="0" style="font-size: clamp(18px, 4vw, 20px); line-height: 1.6; margin: 0; max-width: 34ch; font-weight: 300; align-self: flex-start; text-align: left;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Perquè hi ha paraules que no trobem.<br>I hi ha silencis que ho diuen tot.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Porque hay palabras que no encontramos.<br>Y hay silencios que lo dicen todo.</sc-if></p>
         <div data-reveal="300" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 8px; max-width: 560px; align-self: flex-end;">
           <h2 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(22px, 4.8vw, 30px); line-height: 1.3; letter-spacing: -0.01em; margin: 0; color: var(--sm-white);">Soul Meraki</h2>
-          <p style="font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(22px, 4.8vw, 30px); line-height: 1.3; margin: 0; max-width: 22ch; text-wrap: pretty; color: var(--sm-white);">Una forma de hacer sentir cuando las palabras no llegan</p>
+          <p style="font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: clamp(22px, 4.8vw, 30px); line-height: 1.3; margin: 0; max-width: 22ch; text-wrap: pretty; color: var(--sm-white);"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Una manera de fer sentir quan les paraules no arriben</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Una forma de hacer sentir cuando las palabras no llegan</sc-if></p>
         </div>
       </div>
     </section>
   </div>
 
-  <div data-screen-label="04 Origen de la marca">
+  <div data-screen-label="04 Origen de la marca" id="origen">
     <section style="position: relative; isolation: isolate; min-height: clamp(640px, 120vw, 900px); padding: clamp(120px, 20vw, 200px) clamp(24px, 5vw, 56px); background: url(&quot;./seccion-origen-bg-muzynrsy-imy2.png&quot;) center / cover no-repeat; color: var(--sm-white); --text-body: var(--sm-white); --text-secondary: var(--sm-white); --sm-ink: #FFFFFF; display: flex; align-items: center; justify-content: flex-end">
       <div style="width: 100%; max-width: 400px; margin-right: clamp(0px, 12vw, 200px); display: flex; flex-direction: column; align-items: flex-start; gap: 24px; text-align: left;">
-        <div data-reveal="0"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,48px"><span style="font-size: clamp(28px, 6vw, 36px); line-height: 1.2;">¿De dónde nace Soul Meraki?</span></x-import></div>
+        <div data-reveal="0"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,48px"><span style="font-size: clamp(28px, 6vw, 36px); line-height: 1.2;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">D'on neix Soul Meraki?</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">¿De dónde nace Soul Meraki?</sc-if></span></x-import></div>
         <div style="display: flex; flex-direction: column; gap: 16px; text-align: justify; hyphens: auto;">
-          <p data-reveal="250" style="font-size: 15px; line-height: 1.65; margin: 0">Soul Meraki nace de una experiencia personal. Su fundadora, publicista desde hace más de 30 años, vivió la pérdida de su marido y de una de sus mejores amigas con dos meses de diferencia.</p>
-          <p data-reveal="500" style="font-size: 15px; line-height: 1.65; margin: 0">Esa experiencia transformó su manera de entender los vínculos y cómo expresar mejor los sentimientos cuando se producen estos momentos tan intensos para que la huella y el recuerdo siempre permanezcan.</p>
+          <p data-reveal="250" style="font-size: 15px; line-height: 1.65; margin: 0"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Soul Meraki neix d'una experiència personal. La seva fundadora, publicista des de fa més de 30 anys, va viure la pèrdua del seu marit i d'una de les seves millors amigues amb dos mesos de diferència.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Soul Meraki nace de una experiencia personal. Su fundadora, publicista desde hace más de 30 años, vivió la pérdida de su marido y de una de sus mejores amigas con dos meses de diferencia.</sc-if></p>
+          <p data-reveal="500" style="font-size: 15px; line-height: 1.65; margin: 0"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Aquella experiència va transformar la seva manera d'entendre els vincles i com expressar millor els sentiments quan es produeixen aquests moments tan intensos perquè l'empremta i el record romanguin sempre.</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Esa experiencia transformó su manera de entender los vínculos y cómo expresar mejor los sentimientos cuando se producen estos momentos tan intensos para que la huella y el recuerdo siempre permanezcan.</sc-if></p>
         </div>
       </div>
     </section>
@@ -142,27 +161,62 @@
   <div data-screen-label="05 Contacto">
     <section id="contacto" style="position: relative; isolation: isolate; min-height: clamp(600px, 100svh, 760px); padding: clamp(96px, 16vw, 160px) clamp(24px, 5vw, 56px) 72px; display: flex; align-items: center; justify-content: center; color: var(--text-body); background: var(--surface-page);">
       <div style="width: 100%; max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center;">
-        <div data-reveal="0" style="width: min(calc(100vw - 48px), 960px);"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,56px"><span style="font-size: clamp(24px, 3.4vw, 36px); display: block;">Contacta con nosotros para ayudarte a transmitir</span><span style="font-size: clamp(24px, 3.4vw, 36px); display: block;">tu pésame de una forma exclusiva y personalizada</span></x-import></div>
-        <p data-reveal="250" style="font-size: 16px; line-height: 1.6; margin: 0">Déjanos tus datos y nos podremos rápidamente en contacto contigo:</p>
-        <form data-reveal="500" onSubmit="{{ onSubmit }}" style="width: 100%; margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: left;">
-          <div style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px;">
-            <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.TextField" label="Email" name="email" type="email" required="{{ true }}" hint-size="100%,82px"></x-import>
-            <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.TextField" label="Teléfono" name="telefono" type="tel" hint-size="100%,82px"></x-import>
+        <div data-reveal="0" style="width: min(calc(100vw - 48px), 960px);"><x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Heading" level="h1" as="h2" hint-size="100%,56px"><span style="font-size: clamp(24px, 3.4vw, 36px); display: block;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Contacta amb nosaltres per ajudar-te a transmetre</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Contacta con nosotros para ayudarte a transmitir</sc-if></span><span style="font-size: clamp(24px, 3.4vw, 36px); display: block;"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">el teu condol d'una manera exclusiva i personalitzada</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">tu pésame de una forma exclusiva y personalizada</sc-if></span></x-import></div>
+        <p data-reveal="250" style="font-size: 16px; line-height: 1.6; margin: 0"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Deixa'ns les teves dades i ens posarem ràpidament en contacte amb tu:</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Déjanos tus datos y nos podremos rápidamente en contacto contigo:</sc-if></p>
+        <form data-reveal="500" action="https://formsubmit.co/silvia@soulmeraki.com" method="POST" style="width: 100%; margin-top: 24px; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: left;">
+          <input type="hidden" name="_subject" value="Nueva solicitud · Landing Condolencia ({{ lang }})">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none;">
+          <div style="width: 100%; display: flex; flex-direction: column; gap: 16px;">
+            <div style="width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px;">
+              <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.TextField" label="Email" name="email" type="email" required="{{ true }}" hint-size="100%,82px"></x-import>
+              <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.TextField" label="{{ tPhone }}" name="telefono" type="tel" required="{{ true }}" hint-size="100%,82px"></x-import>
+            </div>
+            <p style="font-size: 14px; line-height: 1.5; margin: 0; color: var(--text-secondary);"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">* Camps obligatoris</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">* Campos obligatorios</sc-if></p>
           </div>
           <div style="--sm-white: #FFFFFF; --sm-ink: #1C1D1D;">
             <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Button" variant="{{ ctaVariant }}" type="submit" hint-size="160px,52px">Enviar</x-import>
           </div>
         </form>
+        <div style="margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <x-import component-from-global-scope="SoulMerakiDesignSystem_7dffe2.Eyebrow" hint-size="100px,20px"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Contacte</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Contacto</sc-if></x-import>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 16px; font-family: var(--font-serif); font-size: 18px; line-height: 1.5;">
+            <a href="mailto:care@soulmeraki.com" style="color: var(--text-body); text-decoration: none; border-bottom: 1px solid var(--border-hairline);">care@soulmeraki.com</a>
+            <span aria-hidden="true" style="color: var(--text-secondary);">|</span>
+            <a href="tel:+34667613453" style="color: var(--text-body); text-decoration: none; border-bottom: 1px solid var(--border-hairline);">+34 667 61 34 53</a>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 
-  <footer style="padding: clamp(64px, 10vw, 96px) 24px 64px; display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center;">
-    <img src="assets/logo-soulmeraki-tinta.svg" alt="Soul Meraki" style="height: 101px; width: 66px; display: block">
-    <div style="font-family: var(--font-serif); font-style: italic; font-weight: 300; font-size: 20px; text-wrap: balance;">Sentimientos encajados en la exclusividad de un instante.</div>
-    <div style="margin-top: 32px; font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.02em; color: var(--text-secondary);">© Soul Meraki 2026</div>
+  <footer style="padding: 32px clamp(24px, 3vw, 40px); display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; font-family: var(--font-sans); font-size: 14px; line-height: 1.4; color: var(--text-secondary);">
+    <div>© 2026 Soul Meraki.</div>
+    <img src="assets/symbol-ink.svg" alt="Soul Meraki" style="height: 40px; width: auto; display: block;">
+    <nav style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 24px; text-align: right;">
+      <a href="Aviso%20Legal.dc.html" style="color: var(--text-secondary); text-decoration: none; transition: color 400ms ease;" style-hover="color: var(--text-body);"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Avís legal</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Aviso legal</sc-if></a>
+      <a href="Politica%20de%20Privacidad.dc.html" style="color: var(--text-secondary); text-decoration: none; transition: color 400ms ease;" style-hover="color: var(--text-body);"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Política de privacitat</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Política de privacidad</sc-if></a>
+      <a href="Politica%20de%20Cookies.dc.html" style="color: var(--text-secondary); text-decoration: none; transition: color 400ms ease;" style-hover="color: var(--text-body);"><sc-if value="{{ ca }}" hint-placeholder-val="{{ true }}">Política de galetes</sc-if><sc-if value="{{ es }}" hint-placeholder-val="{{ false }}">Política de cookies</sc-if></a>
+    </nav>
   </footer>
-  <button type="button" aria-label="Volver al inicio" onClick="{{ toTop }}" tabindex="{{ topTab }}" style="position: fixed; right: clamp(16px, 4vw, 32px); bottom: clamp(16px, 4vw, 32px); z-index: 50; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; padding: 0; background: #FFFFFF; color: #1C1D1D; border: 1px solid #1C1D1D; border-radius: 0; cursor: pointer; font-family: var(--font-sans); font-size: 20px; line-height: 1; transition: opacity 400ms ease, background-color 400ms ease, color 400ms ease; opacity: {{ topOpacity }}; pointer-events: {{ topPointer }};" style-hover="background: #1C1D1D; color: #FFFFFF;">↑</button>
+  <button type="button" aria-label="{{ tTop }}" onClick="{{ toTop }}" tabindex="{{ topTab }}" style="position: fixed; right: clamp(16px, 4vw, 32px); bottom: clamp(16px, 4vw, 32px); z-index: 50; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; padding: 0; background: #FFFFFF; color: #1C1D1D; border: 1px solid #1C1D1D; border-radius: 0; cursor: pointer; font-family: var(--font-sans); font-size: 20px; line-height: 1; transition: opacity 400ms ease, background-color 400ms ease, color 400ms ease; opacity: {{ topOpacity }}; pointer-events: {{ topPointer }}; transform: {{ topTransform }};" style-hover="background: #1C1D1D; color: #FFFFFF;">↑</button>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav role="dialog" aria-modal="true" aria-label="Menú" style="position: fixed; inset: 0; z-index: 100; background: var(--sm-ink); color: var(--sm-white); display: flex; flex-direction: column; overflow-y: auto;">
+      <div style="padding: 28px clamp(24px, 5vw, 56px) 0; display: flex; align-items: center; min-height: 96px;">
+        <button type="button" onClick="{{ closeMenu }}" style="min-height: 44px; padding: 0; background: none; border: 0; color: var(--sm-white); cursor: pointer; font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase;">{{ tClose }}</button>
+      </div>
+      <ul style="flex: 1 1 auto; margin: 0; padding: 48px 24px 96px; list-style: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+        <sc-for list="{{ menuItems }}" as="m" hint-placeholder-count="4">
+          <li>
+            <a href="{{ m.href }}" onClick="{{ m.go }}" style="display: flex; align-items: baseline; gap: 20px; min-height: 44px; color: var(--sm-white); text-decoration: none; transition: opacity 400ms ease;" style-hover="opacity: 0.7; color: var(--sm-white);">
+              <span style="font-family: var(--font-sans); font-weight: 500; font-size: 13px; letter-spacing: 0.1em;">{{ m.n }}</span>
+              <span style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(36px, 5vw, 48px); line-height: 1.4; letter-spacing: -0.01em;">{{ m.label }}</span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </nav>
+  </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;ctaStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Contorno&quot;,&quot;Relleno&quot;,&quot;Texto&quot;],&quot;default&quot;:&quot;Contorno&quot;,&quot;tsType&quot;:&quot;'Contorno'|'Relleno'|'Texto'&quot;,&quot;section&quot;:&quot;CTA&quot;},&quot;darkPause&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Composición&quot;}}">
@@ -195,6 +249,7 @@ class Component extends DCLogic {
       if (!this.animating) { this.current = window.scrollY; this.animating = true; this.raf = requestAnimationFrame(this.tick); }
     };
     this.onWheel = (e) => {
+      if (this.state.menuOpen) return;
       if (reduced || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       e.preventDefault();
       let d = e.deltaY;
@@ -209,6 +264,9 @@ class Component extends DCLogic {
       const lim = h ? h.offsetTop + h.offsetHeight : window.innerHeight;
       const show = window.scrollY >= lim - 1;
       if (show !== this.state.showTop) this.setState({ showTop: show });
+      const f = document.querySelector('footer');
+      const lift = f ? Math.max(0, Math.round(window.innerHeight - f.getBoundingClientRect().top)) : 0;
+      if (lift !== this.state.topLift) this.setState({ topLift: lift });
       if (!this.animating) this.current = this.target = window.scrollY;
     };
     if (!reduced && 'IntersectionObserver' in window) {
@@ -239,6 +297,8 @@ class Component extends DCLogic {
     window.addEventListener('wheel', this.onWheel, { passive: false });
     window.addEventListener('scroll', this.onScroll, { passive: true });
     this.onScroll();
+    this.onKeyMenu = (e) => { if (e.key === 'Escape' && this.state.menuOpen) this.setMenu(false); };
+    document.addEventListener('keydown', this.onKeyMenu);
     this.setupPropuestaReveal();
   }
   setupPropuestaReveal(tries = 0) {
@@ -263,7 +323,21 @@ class Component extends DCLogic {
     }, { threshold: 0.2 });
     els.forEach(el => this.revealIO.observe(el));
   }
+  setMenu(open) {
+    document.body.style.overflow = open ? 'hidden' : '';
+    this.setState({ menuOpen: open });
+  }
+  scrollToId(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { window.scrollTo(0, y); return; }
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    this.target = Math.max(0, Math.min(max, y)); this.start && this.start();
+  }
   componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyMenu);
+    document.body.style.overflow = '';
     this.mq && this.mq.removeEventListener('change', this.onMq);
     window.removeEventListener('wheel', this.onWheel);
     window.removeEventListener('scroll', this.onScroll);
@@ -277,7 +351,51 @@ class Component extends DCLogic {
     const p = this.props;
     const cta = { Contorno: 'secondary', Relleno: 'primary', Texto: 'text' }[p.ctaStyle ?? 'Contorno'] || 'secondary';
     const dark = p.darkPause ?? true;
+    const L = this.state.lang ?? 'CA';
+    const isCA = L === 'CA';
+    if (typeof document !== 'undefined') document.documentElement.lang = isCA ? 'ca' : 'es';
     return {
+      ca: isCA,
+      es: !isCA,
+      tPhone: isCA ? 'Telèfon' : 'Teléfono',
+      tImg1: isCA ? 'Imatge – Carpeta i dedicatòria' : 'Imagen – Carpeta y dedicatoria',
+      tImg2: isCA ? 'Imatge – Vi' : 'Imagen – Vino',
+      tImg3: isCA ? 'Imatge – Espelma aromàtica' : 'Imagen – Vela aromática',
+      tImg4: isCA ? 'Imatge – La Melodia' : 'Imagen – La Melodía',
+      menuOpen: !!this.state.menuOpen,
+      openMenu: () => this.setMenu(true),
+      closeMenu: () => this.setMenu(false),
+      tClose: isCA ? 'Tancar' : 'Cerrar',
+      menuItems: [
+        ['propuesta', 'Proposta', 'Propuesta'],
+        ['envio', "L'enviament", 'El envío'],
+        ['origen', 'Origen', 'Origen'],
+        ['contacto', 'Contacte', 'Contacto'],
+      ].map(([id, ca, es], i) => ({
+        n: String(i + 1).padStart(2, '0'),
+        label: isCA ? ca : es,
+        href: '#' + id,
+        go: (e) => { e.preventDefault(); this.setMenu(false); requestAnimationFrame(() => this.scrollToId(id)); },
+      })),
+      tTop: isCA ? "Torna a l'inici" : 'Volver al inicio',
+      lang: L,
+      langRef: this.langRef || (this.langRef = React.createRef()),
+      langOpen: !!this.state.langOpen,
+      chevronT: this.state.langOpen ? 'translateY(2px) rotate(-135deg)' : 'translateY(-2px) rotate(45deg)',
+      toggleLang: () => {
+        const open = !this.state.langOpen;
+        this.setState({ langOpen: open });
+        if (open && !this.onDocLang) {
+          this.onDocLang = (e) => { const r = this.langRef && this.langRef.current; if (r && !r.contains(e.target)) this.setState({ langOpen: false }); };
+          this.onKeyLang = (e) => { if (e.key === 'Escape') this.setState({ langOpen: false }); };
+          document.addEventListener('mousedown', this.onDocLang);
+          document.addEventListener('keydown', this.onKeyLang);
+        }
+      },
+      langOpts: ['CA', 'ES'].map(code => {
+        const sel = (this.state.lang ?? 'CA') === code;
+        return { code, sel, op: sel ? 1 : 0.7, pick: () => this.setState({ lang: code, langOpen: false }) };
+      }),
       ctaVariant: cta,
       alignL: this.state.mobile ? 'center' : 'flex-start',
       alignR: this.state.mobile ? 'center' : 'flex-end',
@@ -293,6 +411,7 @@ class Component extends DCLogic {
       topOpacity: this.state.showTop ? 1 : 0,
       topPointer: this.state.showTop ? 'auto' : 'none',
       topTab: this.state.showTop ? 0 : -1,
+      topTransform: `translateY(-${this.state.topLift || 0}px)`,
       toPropuesta: (e) => {
         const el = document.getElementById('propuesta');
         if (!el) return;

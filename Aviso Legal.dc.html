@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/tokens/base.css">
+  <link rel="stylesheet" href="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/styles.css">
+  <script src="_ds/soul-meraki-design-system-7dffe249-7f21-4540-82af-87386c11b050/_ds_bundle.js"></script>
+  <style>
+    body{margin:0;background:#FFFFFF} 
+    a{color:var(--text-body)}
+    a:hover{color:var(--text-secondary)}
+  </style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: var(--surface-page); color: var(--text-body);">
+  <header style="display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; padding: 16px clamp(24px, 3vw, 40px); border-bottom: 1px solid var(--border-hairline);">
+    <a href="Landing%20Condolencia.dc.html" style="justify-self: start; display: flex; align-items: center; gap: 8px; min-height: 44px; font-family: var(--font-sans); font-weight: 400; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: color 400ms ease;" style-hover="color: var(--text-body);"><span aria-hidden="true">←</span><span><span style="display: {{ caInline }};">Tornar</span><span style="display: {{ esInline }};">Volver</span></span></a>
+    <a href="Landing%20Condolencia.dc.html" aria-label="Soul Meraki · Inicio" style="display: block;"><img src="assets/logo-soulmeraki-tinta.svg" alt="Soul Meraki" style="height: 56px; width: auto; display: block;"></a>
+    <div ref="{{ langRef }}" style="justify-self: end; position: relative; color: var(--text-body);">
+      <button type="button" aria-label="Idioma" aria-haspopup="listbox" aria-expanded="{{ langOpen }}" onClick="{{ toggleLang }}" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 4px; background: none; border: 0; color: var(--text-body); cursor: pointer; font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.15em;">
+        <span>{{ lang }}</span>
+        <span aria-hidden="true" style="display: block; width: 6px; height: 6px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: {{ chevronT }}; transition: transform 400ms ease;"></span>
+      </button>
+      <sc-if value="{{ langOpen }}" hint-placeholder-val="{{ false }}">
+        <ul role="listbox" aria-label="Idioma" style="position: absolute; top: 100%; right: -12px; z-index: 10; margin: 4px 0 0; padding: 8px 0; list-style: none; background: var(--sm-white); border: 1px solid var(--border-hairline); min-width: 64px; display: flex; flex-direction: column;">
+          <sc-for list="{{ langOpts }}" as="o" hint-placeholder-count="2">
+            <li role="option" aria-selected="{{ o.sel }}">
+              <button type="button" onClick="{{ o.pick }}" style="display: block; width: 100%; min-height: 44px; padding: 0 20px; background: none; border: 0; color: {{ o.color }}; text-align: left; cursor: pointer; font-family: var(--font-sans); font-weight: 500; font-size: 14px; letter-spacing: 0.15em; transition: color 400ms ease;" style-hover="color: var(--text-body);">{{ o.code }}</button>
+            </li>
+          </sc-for>
+        </ul>
+      </sc-if>
+    </div>
+  </header>
+  <main style="flex: 1; width: 100%; max-width: 720px; margin: 0 auto; padding: clamp(64px, 10vw, 112px) 24px clamp(96px, 12vw, 128px); box-sizing: border-box;">
+    <div lang="ca" style="display: {{ caBlock }};">
+    <h1 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(36px, 6vw, 56px); line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 32px;">Avís legal</h1>
+    <div style="display: flex; flex-direction: column; gap: 20px; font-family: var(--font-serif); font-size: 18px; line-height: 1.6; text-wrap: pretty;">
+      <p style="margin: 0;">En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de Serveis de la Societat de la Informació i Comerç Electrònic (LSSICE), a continuació s'exposen les dades identificatives del titular del lloc web:</p>
+      <ul style="margin: 8px 0; padding: 0 0 0 20px; display: flex; flex-direction: column; gap: 8px;">
+        <li><strong style="font-weight: 600;">Titular:</strong> Sílvia Domènech Abad</li>
+        <li><strong style="font-weight: 600;">NIF/DNI:</strong> 46133100E</li>
+        <li><strong style="font-weight: 600;">Domicili:</strong> Plaça Bonanova, 4, En 1, Barcelona</li>
+        <li><strong style="font-weight: 600;">Correu electrònic:</strong> <a href="mailto:care@soulmeraki.com">care@soulmeraki.com</a></li>
+      </ul>
+      <h2 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 3vw, 30px); line-height: 1.25; margin: 24px 0 0;">Condicions d'ús</h2>
+      <p style="margin: 0;">L'accés i ús d'aquest lloc web atribueix la condició d'Usuari, acceptant des d'aquest mateix moment, plenament i sense reserves, les presents condicions generals. L'Usuari es compromet a utilitzar el lloc web, els seus serveis i continguts sense contravenir la legislació vigent, la bona fe i l'ordre públic.</p>
+      <h2 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 3vw, 30px); line-height: 1.25; margin: 24px 0 0;">Propietat intel·lectual</h2>
+      <p style="margin: 0;">Tots els continguts d'aquest lloc web (textos, imatges, disseny, logotips, codi font, etc.) són propietat exclusiva de Soul Meraki o de tercers que n'han autoritzat el seu ús, i estan protegits per la legislació de propietat intel·lectual i industrial. Queda prohibida la seva reproducció, distribució o modificació sense autorització expressa.</p>
+    </div>
+  </div>
+    <div lang="es" style="display: {{ esBlock }};">
+    <h1 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(36px, 6vw, 56px); line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 32px;">Aviso legal</h1>
+    <div style="display: flex; flex-direction: column; gap: 20px; font-family: var(--font-serif); font-size: 18px; line-height: 1.6; text-wrap: pretty;">
+      <p style="margin: 0;">En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), a continuación se exponen los datos identificativos del titular del sitio web:</p>
+      <ul style="margin: 8px 0; padding: 0 0 0 20px; display: flex; flex-direction: column; gap: 8px;">
+        <li><strong style="font-weight: 600;">Titular:</strong> Sílvia Domènech Abad</li>
+        <li><strong style="font-weight: 600;">NIF/DNI:</strong> 46133100E</li>
+        <li><strong style="font-weight: 600;">Domicilio:</strong> Plaça Bonanova, 4, En 1, Barcelona</li>
+        <li><strong style="font-weight: 600;">Correo electrónico:</strong> <a href="mailto:care@soulmeraki.com">care@soulmeraki.com</a></li>
+      </ul>
+      <h2 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 3vw, 30px); line-height: 1.25; margin: 24px 0 0;">Condiciones de uso</h2>
+      <p style="margin: 0;">El acceso y uso de este sitio web atribuye la condición de Usuario, quien acepta desde ese mismo momento, de forma plena y sin reservas, las presentes condiciones generales. El Usuario se compromete a utilizar el sitio web, sus servicios y contenidos sin contravenir la legislación vigente, la buena fe y el orden público.</p>
+      <h2 style="font-family: var(--font-serif); font-weight: 300; font-size: clamp(26px, 3vw, 30px); line-height: 1.25; margin: 24px 0 0;">Propiedad intelectual</h2>
+      <p style="margin: 0;">Todos los contenidos de este sitio web (textos, imágenes, diseño, logotipos, código fuente, etc.) son propiedad exclusiva de Soul Meraki o de terceros que han autorizado su uso, y están protegidos por la legislación sobre propiedad intelectual e industrial. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
+    </div>
+  </div>
+  </main>
+  <footer style="padding: 32px clamp(24px, 3vw, 40px); display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 24px; font-family: var(--font-sans); font-size: 14px; line-height: 1.4; color: var(--text-secondary);">
+    <div>© 2026 Soul Meraki.</div>
+    <img src="assets/symbol-ink.svg" alt="Soul Meraki" style="height: 40px; width: auto; display: block;">
+    <nav style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px 24px; text-align: right;">
+      <a href="Aviso%20Legal.dc.html" aria-current="page" style="color: var(--text-body); text-decoration: none;"><span style="display: {{ caInline }};">Avís legal</span><span style="display: {{ esInline }};">Aviso legal</span></a>
+      <a href="Politica%20de%20Privacidad.dc.html" style="color: var(--text-secondary); text-decoration: none; transition: color 400ms ease;" style-hover="color: var(--text-body);"><span style="display: {{ caInline }};">Política de privacitat</span><span style="display: {{ esInline }};">Política de privacidad</span></a>
+      <a href="Politica%20de%20Cookies.dc.html" style="color: var(--text-secondary); text-decoration: none; transition: color 400ms ease;" style-hover="color: var(--text-body);"><span style="display: {{ caInline }};">Política de galetes</span><span style="display: {{ esInline }};">Política de cookies</span></a>
+    </nav>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: (() => { try { return localStorage.getItem('sm-legal-lang') || 'CA'; } catch (e) { return 'CA'; } })(), langOpen: false };
+  langRef = React.createRef();
+  componentDidMount() {
+    document.documentElement.lang = this.state.lang.toLowerCase();
+    this.onDoc = (e) => { const r = this.langRef.current; if (this.state.langOpen && r && !r.contains(e.target)) this.setState({ langOpen: false }); };
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ langOpen: false }); };
+    document.addEventListener('mousedown', this.onDoc);
+    document.addEventListener('keydown', this.onKey);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.onDoc);
+    document.removeEventListener('keydown', this.onKey);
+  }
+  setLang(code) {
+    try { localStorage.setItem('sm-legal-lang', code); } catch (e) {}
+    document.documentElement.lang = code.toLowerCase();
+    this.setState({ lang: code, langOpen: false });
+  }
+  renderVals() {
+    const L = this.state.lang;
+    const T = {
+      CA: { back: 'Tornar', legal: 'Avís legal', privacy: 'Política de privacitat', cookies: 'Política de galetes' },
+      ES: { back: 'Volver', legal: 'Aviso legal', privacy: 'Política de privacidad', cookies: 'Política de cookies' }
+    };
+    return {
+      lang: L, isCA: L === 'CA', isES: L === 'ES', caBlock: L === 'ES' ? 'none' : 'block', esBlock: L === 'ES' ? 'block' : 'none', caInline: L === 'ES' ? 'none' : 'inline', esInline: L === 'ES' ? 'inline' : 'none', t: T[L] || T.CA,
+      langRef: this.langRef, langOpen: this.state.langOpen,
+      chevronT: this.state.langOpen ? 'translateY(2px) rotate(-135deg)' : 'translateY(-2px) rotate(45deg)',
+      toggleLang: () => this.setState(s => ({ langOpen: !s.langOpen })),
+      langOpts: ['CA', 'ES'].map(code => ({ code, sel: code === L, color: code === L ? 'var(--text-body)' : 'var(--text-secondary)', pick: () => this.setLang(code) }))
+    };
+  }
+}
+</script>
+</body>
+</html>
